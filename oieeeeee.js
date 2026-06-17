@@ -15,17 +15,8 @@ form.addEventListener("submit", evento => {
     }
 console.log(animal.idade_chave)
 
-
-function salvarNoStorage(){
-    localStorage.setItem("animais", JSON.stringify(animal))
-}
-
-
-function deletarIndice(indice){
-    console.log(indice);
-    animales.splice(indice, 1);
-    ListarLocalStorage();
-   salvarNoStorage();
+function editar(){
+    
 }
 
 
