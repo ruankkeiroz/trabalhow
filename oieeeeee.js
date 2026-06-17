@@ -16,6 +16,19 @@ form.addEventListener("submit", evento => {
 console.log(animal.idade_chave)
 
 
+function salvarNoStorage(){
+    localStorage.setItem("animais", JSON.stringify(animal))
+}
+
+
+function deletarIndice(indice){
+    console.log(indice);
+    animales.splice(indice, 1);
+    ListarLocalStorage();
+   salvarNoStorage();
+}
+
+
 //declarando e atribuindo valores em um objeto
 
     // let pessoa = {
@@ -53,7 +66,9 @@ console.log(obj_temp)
 
     for(let i = 0; i < obj_temp.length; i++){
         let div = document.createElement('div');
-        div.innerHTML = `Nome: ${obj_temp[i].nome_chave}, Idade: ${obj_temp[i].idade_chave}, Espécie: ${obj_temp[i].especie_chave} -- <br/>`
+        div.innerHTML = `Nome: ${obj_temp[i].nome_chave}, Idade: ${obj_temp[i].idade_chave}, Espécie: ${obj_temp[i].especie_chave} --<p>
+          <input type="button" onclick="deletarIndice(${i})" value = "Excluir">
+        <br/>`
         resultado.append(div);
     };
 
