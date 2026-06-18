@@ -1,5 +1,5 @@
 let form = document.getElementById("id_form");
-
+let lista_result = document.getElementById("resultado");
 let animales = [];
 
 form.addEventListener("submit", evento => {
@@ -9,62 +9,64 @@ form.addEventListener("submit", evento => {
     let idade = document.getElementById("id_idade").value;
     let especie = document.getElementById("id_especie").value;
     let animal = {
-        nome_chave: nome,
-        idade_chave: idade,
-        especie_chave: especie,
+        nome: nome,
+        idade: idade,
+        especie: especie,
     }
-console.log(animal.idade_chave)
 
-function editar(){
-    
+    adicionar(animal);
+    listar();
+    cadastrarLocalStorage("animaizes", animal);
+});
+
+function adicionar(animal){
+    animales.push(animal);
 }
 
+function listar(){
+    lista_result.innerHTML = "";
+    console.log(lista_result);
 
-//declarando e atribuindo valores em um objeto
+    for(let i = 0; i < animales.length; i++){
+        lista_result.innerHTML += `${i} | Nome: ${animales[i].nome}, Idade: ${animales[i].idade}, Espécie: ${animales[i].especie} </p>
+        <input type:"button" onclick="excluir(${i})" value = "Excluir">
+        <input type:"button" onclick="editar(${i})" value = "Editar">
+        <br/>`;
+    }
+};
 
-    // let pessoa = {
-    //     nome:"Ruan",
-    //     matricula: 6767,
-    //     fala : () =>{
-    //         console.log("aaaaaaaaaaaaaaaaaaaa")
-    //     }
-    // }
+function excluir(indice){
+    animales.splice(indice, 1);
+    listar();
+}
 
-    // pessoa.fala();
-    // console.log(pessoa.nome);
+function editar(indice){
 
-    animales.push(animal);
-console.log(animales);
-    console.log(animales);
+    let NovoNome = prompt("Digite o novo nome: ", animales[indice].nome);
+    let NovaIdade = prompt("Digite a nova idade: ", animales[indice].idade);
+    let NovaEspecie = prompt("Informe a nova espécie: ", animales[indice].especie);
 
-    cadastrarLocalStorage("animaizes", animales)
-});
+    if(NovoNome && NovaIdade && NovaEspecie){
+        animales[indice].nome = NovoNome;
+        animales[indice].idade = NovaIdade;
+        animales[indice].especie = NovaEspecie;
+    }
+    console.log(NovoNome)
+    listar();
+
+}
+
+function cadastrarLocalStorage(chave, valor){
+    localStorage.setItem(chave, JSON.stringify(valor));
+}
+
+function listarLocalStorage(){
+    console.log(JSON.parse(localStorage.getItem("animaizes")));
+}
+
 //JSON.stringify converte um objeto em string
 //JSON.join converte de array para string
 //JSON.parse converte string pra objeto
-function cadastrarLocalStorage(chave, valor){
-    localStorage.setItem(chave, JSON.stringify(valor));
-    console.log()
-
-}
-
-function ListarLocalStorage(){
-    console.log(JSON.parse(localStorage.getItem("animaizes")))
-    let obj_temp = JSON.parse(localStorage.getItem("animaizes"));
-
-console.log(obj_temp)
-    resultado.innerHTML = "";
-
-    for(let i = 0; i < obj_temp.length; i++){
-        let div = document.createElement('div');
-        div.innerHTML = `Nome: ${obj_temp[i].nome_chave}, Idade: ${obj_temp[i].idade_chave}, Espécie: ${obj_temp[i].especie_chave} --<p>
-          <input type="button" onclick="deletarIndice(${i})" value = "Excluir">
-        <br/>`
-        resultado.append(div);
-    };
-
-
-};
 //localStorage.setItem("chave", string) // Cadastrar localmente
 //localStorage.getItem("chave") // Consultar através de uma chave
 //localStorage.key() // Retorna a chave pelo índice
