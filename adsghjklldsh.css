@@ -1,3 +1,51 @@
 body{background-image: url(did-the-remove-guns-execution-finisher-v0-buu76rt3ac5h1.webp);
-    background-size: cover;
+    background-size: cover  ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+fieldset{
+    border-radius: 15px
+    ;
+    background-color: rgba(255, 165, 0, 0.5);
+    border: 2px solid orange;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+}
+#styling{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+#styling_2{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 10px;
+    width: 300px;
+}
+
+input, select{
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+button :hover{
+    transform: scale(1,05);
+    background-color: darkorange;
+}
+button{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: orange;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }

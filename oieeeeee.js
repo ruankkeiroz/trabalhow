@@ -28,15 +28,22 @@ function listar(){
     console.log(lista_result);
 
     for(let i = 0; i < animales.length; i++){
-        lista_result.innerHTML += `${i} | Nome: ${animales[i].nome}, Idade: ${animales[i].idade}, Espécie: ${animales[i].especie} </p>
-        <input type:"button" onclick="excluir(${i})" value = "Excluir">
-        <input type:"button" onclick="editar(${i})" value = "Editar">
+        lista_result.innerHTML += `<img src="images.jpeg">${i} | Nome: ${animales[i].nome}, Idade: ${animales[i].idade}, Espécie: ${animales[i].especie} </p>
+        <input type="button" onclick="excluir(${i})" value = "Excluir">
+        <input type="button" onclick="editar(${i})" value = "Editar">
         <br/>`;
     }
 };
 
 function excluir(indice){
-    animales.splice(indice, 1);
+let resposta = confirm("Tem certeza que deseja excluir o animal?(essa ação não poderá ser revertida futuramente)")
+   if(resposta){
+     animales.splice(indice, 1);
+    console.log("Animal deletado com sucesso!")}
+
+     else{console.log("Animal não deletado, aeeee")};
+
+      
     listar();
 }
 
