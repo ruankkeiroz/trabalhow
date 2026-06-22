@@ -16,19 +16,19 @@ form.addEventListener("submit", evento => {
 
     adicionar(animal);
     listar();
-    cadastrarLocalStorage("animaizes", animal);
+    cadastrarLocalStorage("animaizes", animales);
 });
 
 function adicionar(animal){
     animales.push(animal);
-}
+};
 
 function listar(){
     lista_result.innerHTML = "";
     console.log(lista_result);
 
     for(let i = 0; i < animales.length; i++){
-        lista_result.innerHTML += `<img src="images.jpeg">${i} | Nome: ${animales[i].nome}, Idade: ${animales[i].idade}, Espécie: ${animales[i].especie} </p>
+        lista_result.innerHTML += `${i}| Nome: ${animales[i].nome}, Idade: ${animales[i].idade}, Espécie: ${animales[i].especie} <p>
         <input type="button" onclick="excluir(${i})" value = "Excluir">
         <input type="button" onclick="editar(${i})" value = "Editar">
         <br/>`;
@@ -45,7 +45,7 @@ let resposta = confirm("Tem certeza que deseja excluir o animal?(essa ação nã
 
       
     listar();
-}
+};
 
 function editar(indice){
 
@@ -61,15 +61,18 @@ function editar(indice){
     console.log(NovoNome)
     listar();
 
-}
+};
 
 function cadastrarLocalStorage(chave, valor){
     localStorage.setItem(chave, JSON.stringify(valor));
-}
-
+};
 function listarLocalStorage(){
+    animales = JSON.parse(localStorage.getItem("animaizes"));
     console.log(JSON.parse(localStorage.getItem("animaizes")));
-}
+    listar();
+
+};
+listarLocalStorage();
 
 //JSON.stringify converte um objeto em string
 //JSON.join converte de array para string
