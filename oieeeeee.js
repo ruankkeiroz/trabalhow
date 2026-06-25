@@ -67,7 +67,7 @@ function cadastrarLocalStorage(chave, valor){
     localStorage.setItem(chave, JSON.stringify(valor));
 };
 function listarLocalStorage(){
-    animales = JSON.parse(localStorage.getItem("animaizes"));
+    animales = JSON.parse(localStorage.getItem("animaizes")) || [];
     console.log(JSON.parse(localStorage.getItem("animaizes")));
     listar();
 
